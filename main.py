@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -33,10 +35,9 @@ def draw_graph(G, title=""):
     st.pyplot(plt)
 
 def generate_sequence_diagram():
-    from graphviz import Digraph  # Import ici si non global
-
+    # Créer un diagramme avec Graphviz
     dot = Digraph(format='png', engine='dot')
-    dot.attr(rankdir='LR', size='35' ,dpi="500")  # Augmenter la taille du diagramme
+    dot.attr(rankdir='LR', size='35', dpi="500")  # Augmenter la résolution
 
     # Ajouter des nœuds avec descriptions
     dot.node("Admission", "Admission\n(Entrée des patients)", width="2", height="1")
@@ -58,11 +59,16 @@ def generate_sequence_diagram():
     dot.edge("Traitement Radiologique", "Sortie", label="20 patients/h")
     dot.edge("Traitement Médical", "Sortie", label="50 patients/h")
 
-    # Générer et afficher l'image
-    filepath = "sequence_diagram"
-    dot.render(filepath, format='png', cleanup=True)
-    st.image(f"{filepath}.png", caption="Schéma explicatif du parcours patient", use_container_width=True)
+    # Définir un chemin pour le fichier généré
+    filepath = os.path.join(os.getcwd(), "sequence_diagram")
 
+    # Générer le fichier PNG
+    dot.render(filepath, format='png', cleanup=True)
+
+    return f"{filepath}.png"
+
+# Interface Streamlit
+st.title("Diagramme de Séquence du Parcours Patient")
 # Fonction pour calculer et afficher le flot maximal
 def generate_solution_graph(G):
     flow_value, flow_dict = nx.maximum_flow(G, "Admission", "Sortie")
@@ -83,8 +89,7 @@ def generate_solution_graph(G):
     plt.title("Solution optimisée (Flot maximal)", fontsize=16, color="#333333", fontweight="bold")
     st.pyplot(plt)
 
-# Interface principale Streamlit
-st.title("🔄 Optimisation des flux de patients dans un hôpital")
+
 
 # Navigation par étapes
 st.sidebar.title("📋 Navigation")
