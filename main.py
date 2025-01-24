@@ -68,7 +68,7 @@ def generate_sequence_diagram():
     return f"{filepath}.png"
 
 # Interface Streamlit
-st.title("Diagramme de Séquence du Parcours Patient")
+st.title("Optimisation des Flux de Patients dans un Hôpital à l'Aide de la Recherche Opérationnelle")
 # Fonction pour calculer et afficher le flot maximal
 def generate_solution_graph(G):
     flow_value, flow_dict = nx.maximum_flow(G, "Admission", "Sortie")
