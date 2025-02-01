@@ -37,9 +37,9 @@ L’algorithme de **flot maximal** est ensuite appliqué pour déterminer le flu
 
 Pour installer les bibliothèques nécessaires, exécutez la commande suivante :
 
-```bash
+
 pip install streamlit networkx matplotlib graphviz
-```bash
+
 5. Exécution du Projet
 Pour lancer le projet :
 
