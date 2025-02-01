@@ -46,6 +46,7 @@ Téléchargez le projet et placez-le dans le répertoire de votre choix.
 
 Dans un terminal, exécutez la commande suivante pour démarrer l'application avec Streamlit :
 streamlit run main.py
+
 Naviguez dans l'application, qui se compose des étapes suivantes :
 
 Étape 1 : Introduction
