@@ -119,7 +119,7 @@ pip list | grep -E "streamlit|networkx|matplotlib|graphviz"
 
 2. **Lancement de l'application**
    ```bash
-   streamlit run main.py
+   streamlit run index.py
    ```
 
 3. **Navigation dans l'application**
