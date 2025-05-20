@@ -1,88 +1,201 @@
-# Optimisation des Flux de Patients dans un Hôpital à l'Aide de la Recherche Opérationnelle
+# 🏥 Optimisation des Flux de Patients dans un Hôpital
+### *Application de la Recherche Opérationnelle et de l'Algorithme de Flot Maximal*
 
-## 1. Contexte
 
-Dans de nombreux hôpitaux, des problèmes récurrents se posent en raison de temps d'attente excessifs et d'une surcharge du personnel médical. Ces difficultés résultent souvent d'une gestion inefficace des flux de patients et de ressources limitées (médecins, salles, équipements). Ce projet a pour ambition d'utiliser des techniques de recherche opérationnelle, en particulier l'algorithme de flot maximal, pour optimiser le parcours des patients dans un environnement hospitalier.
 
-## 2. Objectifs
+---
 
-L’objectif principal est de modéliser et d’optimiser le parcours des patients dans un hôpital en tenant compte des contraintes liées aux ressources disponibles. Les objectifs spécifiques sont :
+## 📋 Table des Matières
 
-- **Maximiser le nombre de patients traités par heure.**
-- **Réduire les temps d’attente** à chaque étape du parcours.
-- **Améliorer l’utilisation des ressources** (humaines et matérielles) pour une gestion plus efficace de l’activité hospitalière.
+- [🔍 Contexte](#-contexte)
+- [🎯 Objectifs](#-objectifs)
+- [🔄 Modélisation du Projet](#-modélisation-du-projet)
+- [⚙️ Installation](#️-installation)
+- [🚀 Exécution du Projet](#-exécution-du-projet)
+- [📂 Structure du Projet](#-structure-du-projet)
+- [📊 Résultats](#-résultats)
+- [🙏 Remerciements](#-remerciements)
+- [👥 Auteurs](#-auteurs)
 
-## 3. Modélisation du Projet
+---
 
-Le parcours patient est représenté sous la forme d’un **graphe orienté** :
+## 🔍 Contexte
 
-- **Nœuds** : Chaque nœud correspond à une étape du parcours patient (par exemple, Admission, Consultation, Radiologie, etc.).
-- **Arcs** : Les arcs relient ces étapes et indiquent, par le biais de capacités maximales, le nombre de patients pouvant passer d'une étape à l'autre par heure.
+Dans de nombreux établissements hospitaliers, **des problèmes récurrents** apparaissent en raison de :
 
-L’algorithme de **flot maximal** est ensuite appliqué pour déterminer le flux optimal de patients à travers l'ensemble du système hospitalier, en respectant les contraintes de capacité de chaque service.
+- ⏱️ Temps d'attente excessifs pour les patients
+- 👨‍⚕️ Surcharge du personnel médical
+- 🏢 Gestion inefficace des flux de patients
+- 📉 Ressources limitées (médecins, salles, équipements)
 
-## 4. Installation
+Ce projet applique des **techniques avancées de recherche opérationnelle**, en particulier l'algorithme de flot maximal, pour optimiser le parcours des patients et résoudre ces problématiques critiques.
+
+---
+
+## 🎯 Objectifs
+
+<div align="center">
+  
+| Objectif | Description |
+|:-------:|:------------|
+| 📈 | **Maximiser** le nombre de patients traités par heure |
+| ⌛ | **Réduire** les temps d'attente à chaque étape du parcours |
+| 🔧 | **Améliorer** l'utilisation des ressources (humaines et matérielles) |
+| 📊 | **Identifier** les goulets d'étranglement dans le système hospitalier |
+| 💡 | **Proposer** des solutions d'optimisation basées sur des données concrètes |
+
+</div>
+
+---
+
+## 🔄 Modélisation du Projet
+
+Le parcours patient est modélisé sous forme de **graphe orienté** où :
+
+```mermaid
+graph LR
+    A[Source] --> B[Admission]
+    B --> C[Consultation]
+    C --> D[Radiologie]
+    C --> E[Laboratoire]
+    D --> F[Traitement]
+    E --> F
+    F --> G[Sortie/Puit]
+    
+    style A fill:#6495ED,stroke:#333,stroke-width:2px
+    style G fill:#FF6347,stroke:#333,stroke-width:2px
+    style B fill:#98FB98,stroke:#333,stroke-width:2px
+    style C fill:#98FB98,stroke:#333,stroke-width:2px
+    style D fill:#FFDAB9,stroke:#333,stroke-width:2px
+    style E fill:#FFDAB9,stroke:#333,stroke-width:2px
+    style F fill:#98FB98,stroke:#333,stroke-width:2px
+```
+
+- **Nœuds** : Représentent les différentes étapes du parcours patient (Admission, Consultation, Radiologie, etc.)
+- **Arcs** : Connectent ces étapes et indiquent, via leurs capacités, le nombre maximal de patients pouvant transiter d'une étape à l'autre par heure
+- **Algorithme de flot maximal** : Détermine le flux optimal de patients à travers l'ensemble du système hospitalier, en respectant toutes les contraintes de capacité
+
+---
+
+## ⚙️ Installation
 
 ### Prérequis
 
 - **Python 3.x**
+- **Bibliothèques Python requises** :
 
-- Bibliothèques Python requises :
-  - **Streamlit** : Pour la création de l'interface graphique.
-  - **NetworkX** : Pour la modélisation du graphe et l’implémentation de l'algorithme de flot maximal.
-  - **Matplotlib** : Pour la visualisation des graphes.
-  - **Graphviz** (optionnel) : Pour générer et afficher des schémas explicatifs. Assurez-vous que Graphviz est installé et correctement configuré sur votre machine.
+<div align="center">
+  
+| Bibliothèque | Fonction |
+|--------------|----------|
+| **Streamlit** | Création de l'interface graphique interactive |
+| **NetworkX** | Modélisation du graphe et implémentation de l'algorithme |
+| **Matplotlib** | Visualisation des graphes et des résultats |
+| **Graphviz** (optionnel) | Génération de schémas explicatifs |
+
+</div>
 
 ### Installation des Dépendances
 
-Pour installer les bibliothèques nécessaires, exécutez la commande suivante :
-
-
+```bash
+# Installation des bibliothèques nécessaires
 pip install streamlit networkx matplotlib graphviz
 
-5. Exécution du Projet
-Pour lancer le projet :
+# Vérification de l'installation (optionnel)
+pip list | grep -E "streamlit|networkx|matplotlib|graphviz"
+```
 
-Téléchargez le projet et placez-le dans le répertoire de votre choix.
+> ⚠️ **Note**: Assurez-vous que Graphviz est correctement installé et configuré sur votre machine pour les fonctionnalités de visualisation avancées.
 
-Dans un terminal, exécutez la commande suivante pour démarrer l'application avec Streamlit :
-streamlit run main.py
+---
 
-Naviguez dans l'application, qui se compose des étapes suivantes :
+## 🚀 Exécution du Projet
 
-Étape 1 : Introduction
-Présente le contexte et la problématique.
+1. **Téléchargement**
+   ```bash
+   git clone https://github.com/elabdioui/index.py.git
+   cd hospital-flow-optimization
+   ```
 
-Étape 2 : Création du graphe
-Affiche un graphe représentant le parcours patient avec ses capacités.
+2. **Lancement de l'application**
+   ```bash
+   streamlit run main.py
+   ```
 
-Étape 3 : Schéma explicatif
-Fournit une illustration détaillée du parcours du patient, étape par étape.
+3. **Navigation dans l'application**
 
-Étape 4 : Calcul du flot maximal
-Applique l’algorithme de flot maximal pour déterminer le flux optimal de patients.
+<div align="center">
+  
+| Étape | Description |
+|-------|-------------|
+| **Introduction** | Présentation du contexte et de la problématique |
+| **Création du graphe** | Visualisation du parcours patient avec ses capacités |
+| **Schéma explicatif** | Illustration détaillée du parcours du patient |
+| **Calcul du flot maximal** | Application de l'algorithme pour déterminer le flux optimal |
+| **Analyse des résultats** | Identification des goulets d'étranglement et propositions d'améliorations |
 
-Étape 5 : Analyse des résultats
-Analyse les goulets d’étranglement identifiés et propose des améliorations pour optimiser le flux.
+</div>
 
-6. Structure du Projet
-Le dépôt est organisé comme suit :
+---
+
+## 📂 Structure du Projet
+
+```
 project-directory/
 │
-├── main.py                    # Script principal de l'application
-├── schema_parcours_patient.png # Image illustrant le parcours patient (optionnel)
-├── README.md                   # Ce fichier de documentation
-└── requirements.txt            # Liste des dépendances Python (facultatif)
-7. Résultats
+├── main.py                        # Script principal de l'application
+├── schema_parcours_patient.png    # Image illustrant le parcours patient
+├── README.md                      # Documentation du projet
+└── requirements.txt               # Liste des dépendances Python
+```
+
+---
+
+## 📊 Résultats
+
 L'application permet de :
 
-Calculer le flot maximal, c'est-à-dire le nombre de patients pouvant être traités par heure à travers l'ensemble de l'hôpital.
-Identifier les goulets d'étranglement dans des étapes clés, telles que la Radiologie et le Traitement Radiologique.
-Proposer des pistes d'amélioration pour optimiser le flux des patients en ajustant les ressources ou en réorganisant le parcours.
-8. Remerciements
-Nous souhaitons exprimer notre profonde gratitude à Mme Zineb Tabbakh, professeur de recherche opérationnelle, pour son soutien précieux et ses conseils avisés tout au long de ce projet.
+- **📈 Calculer le flot maximal** : Nombre optimal de patients pouvant être traités par heure
+- **🔍 Identifier les goulets d'étranglement** : Points critiques comme la Radiologie et le Traitement Radiologique
+- **💡 Proposer des améliorations** :
+  - Ajustement des ressources matérielles et humaines
+  - Réorganisation du parcours patient
+  - Planification optimisée des rendez-vous
+  - Redimensionnement des services critiques
 
-9. Auteurs
-Ce projet a été réalisé par :
+---
 
-Haitham El Abdioui
+## 🙏 Remerciements
+
+<div align="center">
+  
+Nous exprimons notre profonde gratitude à 
+
+**Mme Zineb Tabbakh**
+
+*Professeur de Recherche Opérationnelle*
+
+Pour son soutien précieux et ses conseils avisés tout au long de ce projet.
+
+</div>
+
+---
+
+## 👥 Auteurs
+
+<div align="center">
+  
+| Auteur | Contact |
+|--------|---------|
+| **Haitham El Abdioui** | [elabdiouihaitham@gmail.com](mailto:elabdiouihaitham@gmail.com) |
+
+</div>
+
+---
+
+<div align="center">
+  
+**© 2025 - Projet d'Optimisation des Flux Hospitaliers**  
+*Tous droits réservés*
+
+</div>
